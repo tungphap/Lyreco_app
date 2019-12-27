@@ -14,6 +14,7 @@ module.exports = {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        // borderWidth: 1
     },
     body: {
         flex: 1,
@@ -54,7 +55,7 @@ module.exports = {
         color: '#6600ff',
     },
     btnTouchable: {
-        backgroundColor: '#9ACD32',
+        backgroundColor: '#9bc31c',
         width: "85%",
         height: 60,
         justifyContent: 'center',
@@ -67,7 +68,11 @@ module.exports = {
         },
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
-        elevation: 5,
+        elevation: 2,
+    },
+    titleBtn: {
+        color: '#fff', 
+        fontSize: 25
     },
     E_Appro: {
         backgroundColor: '#fff',
@@ -77,11 +82,65 @@ module.exports = {
         justifyContent: 'center',
         shadowColor: "#000",
         shadowOffset: {
-            width: 1,
-            height: 10,
+            width: 0,
+            height: 1,
         },
         shadowOpacity: 0.45,
         shadowRadius: 1.14,
-        elevation: 5,
-    }
+        elevation: 3,
+    },
+    QRCamera: {
+        height: '100%',
+        width: '85%',
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    textRed: {
+        color: 'red',
+        fontWeight: 'bold',
+        fontSize: 30,
+        textAlign: 'center'
+    },
+    textBlue: {
+        color: '#2d2e87',
+        textAlign: 'center'
+    },
+    pointView: {
+        margin: 4, 
+        backgroundColor: '#2d2e87', 
+        height: 10, 
+        width: 10, 
+        borderRadius: 100, 
+        opacity: 0.2 
+    },
+    btnSetInfo: {
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        backgroundColor: '#f2f2f2',
+        height:'100%',
+        borderRadius: 10,
+        flex: 1,
+    },
+    titleBtnSetInfo: {
+        color: '#999999',
+        fontSize: 20
+    },
+    listChoisir: {
+        width: '100%',
+        color: '#2d2e87',
+        height: '100%'
+    },
+    angleViewScanWidth: {
+        width: 35,
+        height: 5,
+        backgroundColor: '#fff',
+        position: 'absolute'
+    },
+    angleViewScanHeight: {
+        width: 5,
+        height: 35,
+        backgroundColor: '#fff',
+        position: 'absolute'
+    },
 }
