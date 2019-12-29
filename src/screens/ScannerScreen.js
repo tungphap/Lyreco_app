@@ -32,7 +32,9 @@ export default class ScannerScreen extends React.Component {
     }
 
     onScan = (e) => {
-        Alert.alert("Barcode value is " + e.data, "Barcode type is" + e.type);
+        if (e) {
+            this.props.navigation.navigate('Valider', { value: e.data })
+        }
     }
     render() {
         return (
@@ -74,9 +76,9 @@ export default class ScannerScreen extends React.Component {
                         </RNCamera>
                     </View>
                     <View style={[styles.footer, { height: height / 4, flex: 0 }]}>
-                        <TouchableOpacity style={styles.btnTouchable}>
+                        <View style={styles.btnTouchable}>
                             <Text style={{ color: '#fff', fontSize: 25 }}>SCANNING...</Text>
-                        </TouchableOpacity>
+                        </View>
                     </View>
                 </ScrollView>
             </View>

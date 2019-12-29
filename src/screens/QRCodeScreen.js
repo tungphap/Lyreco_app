@@ -19,7 +19,10 @@ export default class QRCodeScreen extends React.Component {
                 </View>
 
                 <View style={styles.footer}>
-                    <TouchableOpacity style={styles.btnTouchable}>
+                    <TouchableOpacity style={styles.btnTouchable}
+                    onPress={() => {
+                        this.props.navigation.navigate('Scanner')
+                    }}>
                         <Text style={{ color: '#fff', fontSize: 25 }}>SCANNER</Text>
                     </TouchableOpacity>
                 </View>

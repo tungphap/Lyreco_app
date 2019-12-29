@@ -1,9 +1,15 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Dimensions, ScrollView, TextInput, Image, CheckBox, KeyboardAvoidingView } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, ScrollView, TextInput, Image, CheckBox, Radio } from 'react-native'
 import Logo from '../images/LYRECO.png'
 import styles from '../style'
 const { width, height } = Dimensions.get('window');
 export default class LoginScreen extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            checkbox: false
+        }
+    }
     render() {
         return (
             <ScrollView>
@@ -22,7 +28,11 @@ export default class LoginScreen extends React.Component {
                         <TextInput style={styles.textInput} secureTextEntry={true}></TextInput>
                     </View>
                     <View style={[styles.inputGroup, { flexDirection: 'row', alignItems: 'center' }]}>
-                        <CheckBox></CheckBox>
+                        <CheckBox
+                        onValueChange={()=>{
+                            this.setState({checkbox: !this.state.checkbox})
+                        }}
+                            value={this.state.checkbox}></CheckBox>
                         <Text style={{ color: '#6600ff' }}>Connexion automatique</Text>
                     </View>
                 </View>
@@ -32,7 +42,10 @@ export default class LoginScreen extends React.Component {
                     </View>
                     {/* button login */}
                     <View style={[styles.body, { width: '100%' }]}>
-                        <TouchableOpacity style={[styles.btnTouchable]}>
+                        <TouchableOpacity style={[styles.btnTouchable]}
+                            onPress={() => {
+                                this.props.navigation.navigate('HomePage')
+                            }}>
                             <Text style={{ color: '#fff', fontSize: 25 }}>SE CONNECTER</Text>
                         </TouchableOpacity>
                     </View>

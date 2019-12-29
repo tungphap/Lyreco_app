@@ -8,7 +8,7 @@ export default class ValiderFail extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={[styles.header, { flex: 2 }]}> 
+                <View style={[styles.header, { flex: 2 }]}>
                     <Image source={failIcon} style={{ width: 250, height: 250 }}></Image>
                     <Text></Text>
                     <Text style={[styles.textRed]}>ATTENTION !</Text>
@@ -18,7 +18,10 @@ export default class ValiderFail extends React.Component {
 
                 <View style={[styles.footer]}>
                     <View style={[styles.body, { width: '100%' }]}>
-                        <TouchableOpacity style={[styles.btnTouchable]}>
+                        <TouchableOpacity style={[styles.btnTouchable]}
+                            onPress={() => {
+                                this.props.navigation.navigate('QRcode')
+                            }}>
                             <Text style={{ color: '#fff', fontSize: 25 }}>RE-SCANNER</Text>
                         </TouchableOpacity>
                     </View>

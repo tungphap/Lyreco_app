@@ -27,7 +27,10 @@ export default class ValiderSuccess extends React.Component {
 
                 <View style={[styles.footer]}>
                     <View style={[styles.body, { width: '100%' }]}>
-                        <TouchableOpacity style={[styles.btnTouchable]}>
+                        <TouchableOpacity style={[styles.btnTouchable]}
+                            onPress={() => {
+                                this.props.navigation.navigate('Information')
+                            }}>
                             <Text style={{ color: '#fff', fontSize: 25 }}>VALIDER</Text>
                         </TouchableOpacity>
                     </View>

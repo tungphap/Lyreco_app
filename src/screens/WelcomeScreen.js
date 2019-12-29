@@ -18,13 +18,16 @@ export default class WelcomeScreen extends React.Component {
                     </View>
                     <View style={styles.body}>
                         <View style={[styles.E_Appro]}>
-                            <Text style={{ fontWeight: 'bold', color: '#2d2e87', fontSize:25 }}>E-Appro</Text>
+                            <Text style={{ fontWeight: 'bold', color: '#2d2e87', fontSize: 25 }}>E-Appro</Text>
                         </View>
                     </View>
                 </View>
                 <View style={[styles.footer, { height: height / 3 }]}>
                     <View style={[styles.body, { width: '100%' }]}>
-                        <TouchableOpacity style={[styles.btnTouchable]}>
+                        <TouchableOpacity style={[styles.btnTouchable]}
+                            onPress={() => {
+                                this.props.navigation.navigate('QRcode')
+                            }}>
                             <Text style={{ color: '#fff', fontSize: 25 }}>ENTRER</Text>
                         </TouchableOpacity>
                     </View>
