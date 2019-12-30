@@ -64,8 +64,8 @@ export default class SetInformations extends React.Component {
         return (
             <ScrollView >
                 <View style={[styles.header, { height: height / 4 }]}>
-                    <Text style={[styles.textBlue, { fontSize: 20 }]}>Votre capteur a bien été reconnu par le réseau.</Text>
-                    <Text style={[styles.textTitle, { textShadowRadius: 0, letterSpacing: 0 }]}>MERCI D'INDIQUER:</Text>
+                    <Text style={[styles.textBlue, { fontSize: 20, fontFamily: 'GothamLight' }]}>Votre capteur a bien été reconnu par le réseau.</Text>
+                    <Text style={[styles.textTitle]}>MERCI D'INDIQUER:</Text>
                 </View>
                 <View style={[styles.body, { height: height / 2 }]}>
                     {/* set value Stock */}
@@ -74,7 +74,7 @@ export default class SetInformations extends React.Component {
                         <View style={{ flexDirection: 'row', paddingTop: 5 }}>
                             {/* Ramette button */}
                             <TouchableOpacity
-                                style={[styles.btnSetInfo, { backgroundColor: this.state.Stock.ramette ? 'blue' : '#f2f2f2' }]}
+                                style={[styles.btnSetInfo, { backgroundColor: this.state.Stock.ramette ? '#2d2e87' : '#f9f9f9' }]}
                                 onPress={this.setStock_ramette}>
                                 <Text style={[styles.titleBtnSetInfo, { color: this.state.Stock.ramette ? '#fff' : '#999999' }]}>Ramette</Text>
                             </TouchableOpacity>
@@ -83,7 +83,7 @@ export default class SetInformations extends React.Component {
                             </View>
                             {/* Carton button */}
                             <TouchableOpacity
-                                style={[styles.btnSetInfo, { backgroundColor: this.state.Stock.carton ? 'blue' : '#f2f2f2' }]}
+                                style={[styles.btnSetInfo, { backgroundColor: this.state.Stock.carton ? '#2d2e87' : '#f9f9f9' }]}
                                 onPress={this.setStock_carton}>
                                 <Text style={[styles.titleBtnSetInfo, { color: this.state.Stock.carton ? '#fff' : '#999999' }]}>Carton</Text>
                             </TouchableOpacity>
@@ -95,7 +95,7 @@ export default class SetInformations extends React.Component {
                         <View style={{ flexDirection: 'row', paddingTop: 5 }}>
                             {/* A4 button */}
                             <TouchableOpacity
-                                style={[styles.btnSetInfo, { backgroundColor: this.state.Papier.A4 ? 'blue' : '#f2f2f2' }]}
+                                style={[styles.btnSetInfo, { backgroundColor: this.state.Papier.A4 ? '#2d2e87' : '#f9f9f9' }]}
                                 onPress={this.setPapier_A4}>
                                 <Text style={[styles.titleBtnSetInfo, { color: this.state.Papier.A4 ? '#fff' : '#999999' }]}>A4</Text>
                             </TouchableOpacity>
@@ -104,7 +104,7 @@ export default class SetInformations extends React.Component {
                             </View>
                             {/* A3 button */}
                             <TouchableOpacity
-                                style={[styles.btnSetInfo, { backgroundColor: this.state.Papier.A3 ? 'blue' : '#f2f2f2' }]}
+                                style={[styles.btnSetInfo, { backgroundColor: this.state.Papier.A3 ? '#2d2e87' : '#f9f9f9' }]}
                                 onPress={this.setPapier_A3}>
                                 <Text style={[styles.titleBtnSetInfo, { color: this.state.Papier.A3 ? '#fff' : '#999999' }]}>A3</Text>
                             </TouchableOpacity>
@@ -116,7 +116,7 @@ export default class SetInformations extends React.Component {
                         <View style={{ flexDirection: 'row', paddingTop: 5 }}>
                             {/* Basic button */}
                             <TouchableOpacity
-                                style={[styles.btnSetInfo, { backgroundColor: this.state.Offre.basic ? 'blue' : '#f2f2f2' }]}
+                                style={[styles.btnSetInfo, { backgroundColor: this.state.Offre.basic ? '#2d2e87' : '#f9f9f9' }]}
                                 onPress={this.setOffre_basic}>
                                 <Text style={[styles.titleBtnSetInfo, { color: this.state.Offre.basic ? '#fff' : '#999999' }]}>Basic</Text>
                             </TouchableOpacity>
@@ -125,7 +125,7 @@ export default class SetInformations extends React.Component {
                             </View>
                             {/* Premium button */}
                             <TouchableOpacity
-                                style={[styles.btnSetInfo, { backgroundColor: this.state.Offre.premium ? 'blue' : '#f2f2f2' }]}
+                                style={[styles.btnSetInfo, { backgroundColor: this.state.Offre.premium ? '#2d2e87' : '#f9f9f9' }]}
                                 onPress={this.setOffre_premium}>
                                 <Text style={[styles.titleBtnSetInfo, { color: this.state.Offre.premium ? '#fff' : '#999999' }]}>Premium</Text>
                             </TouchableOpacity>
@@ -142,7 +142,6 @@ export default class SetInformations extends React.Component {
                                 onValueChange={async (itemValue) => {
                                     await this.setState({ Ref_article: itemValue })
                                     await this.checkValider()
-                                    ToastAndroid.show(this.state.Ref_article, ToastAndroid.SHORT)
                                 }
                                 }>
                                 <Picker.Item label="Choisir..." value={null} />
@@ -152,27 +151,27 @@ export default class SetInformations extends React.Component {
                     </View>
                 </View>
                 <View style={[styles.footer, { height: height / 5 }]}>
-                    <Text style={[styles.textRed, { fontWeight: 'normal', fontSize: 15, display: this.state.Valider_success ? 'none' : 'flex' }]}>(Vous devez impérativement indiquer un choix par item)</Text>
+                    <Text style={[styles.textRed, { fontFamily: 'GothamLight', fontSize: 15, display: this.state.Valider_success ? 'none' : 'flex' }]}>(Vous devez impérativement indiquer un choix par item)</Text>
                     <Text></Text>
                     <View style={[{ flexDirection: 'row' }]}>
                         {/* RETOUR button */}
                         <TouchableOpacity
-                            style={[styles.btnTouchable, { width: '35%', flexDirection: "row", display: this.state.Valider_success ? 'flex' : 'none' }]}
+                            style={[styles.btnTouchable, { backgroundColor: '#fff', width: '35%', flexDirection: "row", display: this.state.Valider_success ? 'flex' : 'none' }]}
                             onPress={() => {
                                 this.props.navigation.navigate('Valider')
                             }}>
-                            <Image source={backicon} style={{ width: 30, height: 30 }} />
-                            <Text style={styles.titleBtn}>RETOUR</Text>
+                            <Image source={backicon} style={{ width: 15, height: 15 }} />
+                            <Text style={[styles.titleBtn, { color: '#9bc31c', fontSize: 20 }]}> RETOUR</Text>
                         </TouchableOpacity>
-                        <View style={{ width: '5%', display: this.state.Valider_success ? 'flex' : 'none' }}></View>
+                        <View style={{ width: '3%', display: this.state.Valider_success ? 'flex' : 'none' }}></View>
                         {/* VALIDER button */}
-                        <TouchableOpacity style={[styles.btnTouchable, { width: this.state.Valider_success ? '40%' : '85%' }]}
+                        <TouchableOpacity style={[styles.btnTouchable, { width: this.state.Valider_success ? '35%' : '70%' }]}
                             onPress={() => {
                                 if (this.state.Valider_success == true) {
                                     this.props.navigation.navigate('Finish')
                                 }
                             }}>
-                            <Text style={styles.titleBtn}>VALIDER</Text>
+                            <Text style={[styles.titleBtn, {  fontSize: 20 }]}>VALIDER</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

@@ -34,21 +34,27 @@ export default class ScannerScreen extends React.Component {
     onScan = (e) => {
         if (e) {
             this.props.navigation.navigate('Valider', { value: e.data })
+            this.camera.pausePreview()
         }
     }
+    paus
     render() {
         return (
             <View style={[styles.container, { height: height, flex: 0 }]}>
                 <ScrollView>
                     <View style={[styles.header, { height: height / 4, flex: 0 }]}>
-                        <Text style={[styles.textTitle, { letterSpacing: 0, textShadowRadius: 0 }]}>Merci de bien vouloir{`\n`} scanner le QRcode</Text>
-                        <Text style={{ color: '#2d2e87' }}>Qui se trouve au dos de votre captuer</Text>
+                        <Text style={[styles.textTitle, { letterSpacing: 0, textAlign: 'center' }]}>Merci de bien vouloir{`\n`}scanner le QRcode</Text>
+                        <Text style={{ color: '#2d2e87', fontSize: 16, fontFamily: 'GothamLight' }}>Qui se trouve au dos de votre captuer</Text>
                     </View>
                     <View style={[styles.body, { height: height / 2, flex: 0 }]}>
                         <RNCamera
+                            ref={ref => {
+                                this.camera = ref;
+                            }}
                             onBarCodeRead={this.onScan}
                             barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
-                            style={[styles.QRCamera]}>
+                            style={[styles.QRCamera]}
+                        >
                             <View style={{ backgroundColor: 'transparent', width: '90%', height: '90%' }}>
                                 <Animated.View
                                     style={{
@@ -76,9 +82,13 @@ export default class ScannerScreen extends React.Component {
                         </RNCamera>
                     </View>
                     <View style={[styles.footer, { height: height / 4, flex: 0 }]}>
-                        <View style={styles.btnTouchable}>
-                            <Text style={{ color: '#fff', fontSize: 25 }}>SCANNING...</Text>
-                        </View>
+                        <TouchableOpacity style={styles.btnTouchable}
+                            onPress={() => {
+                                this.props.navigation.navigate('Valider', { value: 1 })
+
+                            }}>
+                            <Text style={[styles.titleBtn]}>SCANNING...</Text>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </View>

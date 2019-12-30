@@ -7,10 +7,10 @@ export default class ValiderScreen extends React.Component {
 
     checkValider = () => {
         const value = this.props.navigation.getParam('value')
-        if(value==1){
+        if (value == 1) {
             this.props.navigation.navigate('Success')
         }
-        else{
+        else {
             this.props.navigation.navigate('Fail')
         }
     }
@@ -33,16 +33,16 @@ export default class ValiderScreen extends React.Component {
 
                 <View style={[styles.footer]}>
                     <View style={[styles.header, { width: '100%' }]}>
-                        <Text style={styles.textBlue}>Vous pouvez le pré-positionner{`\n`}et appuyer sur le bouton du captuer </Text>
+                        <Text style={[styles.textBlue, { fontFamily: 'GothamLight', fontSize: 20 }]}>Vous pouvez le pré-positionner{`\n`}et appuyer sur le bouton du captuer </Text>
                     </View>
                     <View style={[styles.body, { width: '100%' }]}>
-                        <TouchableOpacity style={[styles.btnTouchable, { height: '60%' }]}
+                        <TouchableOpacity style={[styles.btnTouchable, { height: '60%', width: '70%' }]}
                             onPress={this.checkValider}>
                             <Text style={styles.titleBtn}>VALIDER</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={[styles.footer, { width: '100%' }]}>
-                        <TouchableOpacity style={[styles.btnTouchable, { height: '60%' }]}
+                        <TouchableOpacity style={[styles.btnTouchable, { height: '60%', width: '70%' }]}
                             onPress={() => {
                                 this.props.navigation.navigate('QRcode')
                             }}>

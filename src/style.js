@@ -8,7 +8,7 @@ module.exports = {
         margin: 0,
         padding: 0,
         backgroundColor: '#fff',
-        flex: 1
+        flex: 1,
     },
     header: {
         flex: 1,
@@ -35,10 +35,8 @@ module.exports = {
     textTitle: {
         color: '#2d2e87',
         fontSize: 30,
-        letterSpacing: 5,
-        textShadowOffset: { width: 4, height: 1 },
-        textShadowColor: '#b3b3b3',
-        textShadowRadius: 1
+        letterSpacing: 1,
+        fontFamily: 'GothamMedium'
     },
     inputGroup: {
         width: '80%',
@@ -47,12 +45,14 @@ module.exports = {
         backgroundColor: '#f2f2f2',
         marginBottom: 30,
         borderRadius: 7,
-        paddingLeft: 15
+        paddingLeft: 15,
+        fontFamily: 'GothamMedium'
     },
     titleInput: {
         fontWeight: 'bold',
         fontSize: 15,
-        color: '#6600ff',
+        color: '#2d2e87',
+        fontFamily: 'GothamMedium'
     },
     btnTouchable: {
         backgroundColor: '#9bc31c',
@@ -60,19 +60,13 @@ module.exports = {
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 8,
-        shadowColor: "#000000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.20,
-        shadowRadius: 1.41,
-        elevation: 2,
+        borderRadius: 5,
+        elevation: 2
     },
     titleBtn: {
         color: '#fff', 
-        fontSize: 25
+        fontSize: 25,
+        fontFamily: 'GothamMedium',
     },
     E_Appro: {
         backgroundColor: '#fff',
@@ -97,14 +91,15 @@ module.exports = {
         alignItems: 'center'
     },
     textRed: {
-        color: 'red',
-        fontWeight: 'bold',
+        color: '#ff0000',
         fontSize: 30,
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'GothamMedium'
     },
     textBlue: {
         color: '#2d2e87',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontFamily: 'GothamMedium'
     },
     pointView: {
         margin: 4, 
@@ -124,12 +119,13 @@ module.exports = {
     },
     titleBtnSetInfo: {
         color: '#999999',
-        fontSize: 20
+        fontSize: 20,
+        fontFamily: 'GothamLight'
     },
     listChoisir: {
         width: '100%',
         color: '#2d2e87',
-        height: '100%'
+        height: '100%',
     },
     angleViewScanWidth: {
         width: 35,

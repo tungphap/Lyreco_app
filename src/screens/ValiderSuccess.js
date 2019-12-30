@@ -10,8 +10,8 @@ export default class ValiderSuccess extends React.Component {
             <View style={styles.container}>
                 <View style={[styles.header, { flex: 2 }]}>
                     <Image source={checkicon} style={{ width: 250, height: 250 }}></Image>
-                    <Text></Text>
-                    <Text style={[styles.textBlue]}>
+                    <Text></Text><Text></Text>
+                    <Text style={[styles.textBlue, {fontFamily:'GothamLight', fontSize:18}]}>
                         Votre capteur a bien été reconnu par{`\n`}
                         le réseau et envoie correctement les données
                     </Text>
@@ -27,11 +27,11 @@ export default class ValiderSuccess extends React.Component {
 
                 <View style={[styles.footer]}>
                     <View style={[styles.body, { width: '100%' }]}>
-                        <TouchableOpacity style={[styles.btnTouchable]}
+                        <TouchableOpacity style={[styles.btnTouchable,{width:'70%'}]}
                             onPress={() => {
                                 this.props.navigation.navigate('Information')
                             }}>
-                            <Text style={{ color: '#fff', fontSize: 25 }}>VALIDER</Text>
+                            <Text style={styles.titleBtn}>VALIDER</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
