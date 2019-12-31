@@ -33,7 +33,7 @@ export default class ValiderScreen extends React.Component {
 
                 <View style={[styles.footer]}>
                     <View style={[styles.header, { width: '100%' }]}>
-                        <Text style={[styles.textBlue, { fontFamily: 'GothamLight', fontSize: 20 }]}>Vous pouvez le pré-positionner{`\n`}et appuyer sur le bouton du captuer </Text>
+                        <Text style={[styles.textBlue, { fontFamily: 'GothamLight', fontSize: 20 }]}>Vous pouvez le pré-positionner{`\n`}et appuyer sur le bouton du capteur </Text>
                     </View>
                     <View style={[styles.body, { width: '100%' }]}>
                         <TouchableOpacity style={[styles.btnTouchable, { height: '60%', width: '70%' }]}

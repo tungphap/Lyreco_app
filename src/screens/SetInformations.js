@@ -144,8 +144,8 @@ export default class SetInformations extends React.Component {
                                     await this.checkValider()
                                 }
                                 }>
-                                <Picker.Item label="Choisir..." value={null} />
-                                <Picker.Item label="Ref: XXXXXXX" value="abc" />
+                                <Picker.Item label="Choisir . . ." value={null} color='#2d2e87'  />
+                                <Picker.Item label="Ref: XXXXXXX" value="abc" color='#2d2e87'  />
                             </Picker>
                         </View>
                     </View>
@@ -171,7 +171,7 @@ export default class SetInformations extends React.Component {
                                     this.props.navigation.navigate('Finish')
                                 }
                             }}>
-                            <Text style={[styles.titleBtn, {  fontSize: 20 }]}>VALIDER</Text>
+                            <Text style={[styles.titleBtn, { fontSize: 20 }]}>VALIDER</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

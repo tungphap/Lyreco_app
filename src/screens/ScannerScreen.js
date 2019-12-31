@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, Dimensions, TouchableOpacity, Alert, Animated, Easing, ScrollView } from 'react-native'
 import { RNCamera } from 'react-native-camera'
 import styles from '../style'
-
+import {TextLoader} from 'react-native-indicator'
 const { width, height } = Dimensions.get('window')
 export default class ScannerScreen extends React.Component {
     constructor(props) {
@@ -44,7 +44,7 @@ export default class ScannerScreen extends React.Component {
                 <ScrollView>
                     <View style={[styles.header, { height: height / 4, flex: 0 }]}>
                         <Text style={[styles.textTitle, { letterSpacing: 0, textAlign: 'center' }]}>Merci de bien vouloir{`\n`}scanner le QRcode</Text>
-                        <Text style={{ color: '#2d2e87', fontSize: 16, fontFamily: 'GothamLight' }}>Qui se trouve au dos de votre captuer</Text>
+                        <Text style={{ color: '#2d2e87', fontSize: 16, fontFamily: 'GothamLight' }}>Qui se trouve au dos de votre capteur</Text>
                     </View>
                     <View style={[styles.body, { height: height / 2, flex: 0 }]}>
                         <RNCamera
@@ -87,7 +87,7 @@ export default class ScannerScreen extends React.Component {
                                 this.props.navigation.navigate('Valider', { value: 1 })
 
                             }}>
-                            <Text style={[styles.titleBtn]}>SCANNING...</Text>
+                            <TextLoader text="SCANNING" textStyle={styles.titleBtn}/>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>

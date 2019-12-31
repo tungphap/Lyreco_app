@@ -10,7 +10,7 @@ export default class QRCodeScreen extends React.Component {
             <View style={[styles.container]}>
                 <View style={styles.header}>
                     <Text style={[styles.textTitle, { letterSpacing: 0, textAlign: 'center' }]}>Merci de bien vouloir{`\n`}scanner le QRcode</Text>
-                    <Text style={{ color: '#2d2e87', fontSize: 16, fontFamily: 'GothamLight' }}>Qui se trouve au dos de votre captuer</Text>
+                    <Text style={{ color: '#2d2e87', fontSize: 16, fontFamily: 'GothamLight' }}>Qui se trouve au dos de votre capteur</Text>
                 </View>
                 <View style={[styles.body, { flex: 2 }]}>
                     <View style={[styles.body]}>

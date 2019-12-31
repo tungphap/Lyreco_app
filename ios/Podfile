@@ -44,6 +44,8 @@ target 'Lyreco_app' do
 
   pod 'RNScreens', :path => '../node_modules/react-native-screens'
 
+  pod 'ReactNativeART', :path => '../node_modules/@react-native-community/art'
+
   target 'Lyreco_appTests' do
     inherit! :search_paths
     # Pods for testing
