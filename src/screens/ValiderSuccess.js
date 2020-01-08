@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Image, Text, TouchableOpacity, Easing, Dimensions, Animated } from 'react-native'
 import checkicon from '../images/checkicon.png'
 import styles from '../style'
-import { LineDotsLoader , DotsLoader} from 'react-native-indicator'
+import { LineDotsLoader, DotsLoader } from 'react-native-indicator'
 const { width, height } = Dimensions.get('window');
 export default class ValiderSuccess extends React.Component {
     constructor(props) {
@@ -10,6 +10,12 @@ export default class ValiderSuccess extends React.Component {
         this.state = {
 
         }
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.props.navigation.navigate('Information')
+        }, 3000);
     }
 
     render() {
@@ -24,20 +30,16 @@ export default class ValiderSuccess extends React.Component {
                     </Text>
                     <Text></Text>
                     <View style={{ flexDirection: 'row' }}>
-                        <DotsLoader color='#2d2e87'/>
-                        <DotsLoader color='#2d2e87'/>
-
+                        <DotsLoader color='#2d2e87' />
+                        <DotsLoader color='#2d2e87' />
                     </View>
                 </View>
 
                 <View style={[styles.footer]}>
                     <View style={[styles.body, { width: '100%' }]}>
-                        <TouchableOpacity style={[styles.btnTouchable, { width: '70%' }]}
-                            onPress={() => {
-                                this.props.navigation.navigate('Information')
-                            }}>
+                        <View style={[styles.btnTouchable, { width: '70%' }]}>
                             <Text style={styles.titleBtn}>VALIDER</Text>
-                        </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </View>

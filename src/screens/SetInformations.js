@@ -1,56 +1,102 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image, Picker, Dimensions, ScrollView, ToastAndroid } from 'react-native'
-import RNPickerSelect from 'react-native-picker-select'
+import {
+    View, Text,
+    TouchableOpacity, Image,
+    Picker, Dimensions,
+    ScrollView, ToastAndroid,
+    Modal, ActivityIndicator, FlatList
+} from 'react-native'
+import { CirclesLoader } from 'react-native-indicator'
 import backicon from '../images/backicon.png'
 import styles from '../style'
+import global from '../global'
+import getApi from '../api/getApi'
 
 const { width, height } = Dimensions.get('window')
 export default class SetInformations extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            Stock: { ramette: false, carton: false },
+            Stock: null,
             Papier: { A4: false, A3: false },
             Offre: { basic: false, premium: false },
-            Ref_article: null,
-            Valider_success: false
+            Article: null,
+            Ref_article: [],
+            Valider_success: false,
+            modalVisible: false
+        }
+        this.changeValue = this.changeValue.bind(this);
+        this.getDataFromApi()
+    }
+
+    getDataFromApi = () => {
+        getApi(`${global.url}${'v1/manager/app/stock'}`).then(stock => {
+            if (stock !== null && stock !== undefined) {
+                this.setState({ Stock: stock.msg })
+            }
+        })
+
+        // getApi(`${global.url}${'v1/manager/app/paper'}`).then(paper => {
+        //     if (paper !== null && paper !== undefined) {
+        //         this.setState({ Papier: paper.msg })
+        //     }
+        // })
+
+        getApi(`${global.url_get_ref_article}`).then(ref => {
+            if (ref !== null && ref !== undefined) {
+                this.setState({ Ref_article: ref.msg })
+            }
+        })
+    }
+
+    changeValue = (id) => () => {
+        switch (id) {
+            case 1:
+                this.setState({ Stock: 1 })
+                alert(this.state.Stock)
+                break;
+            case 2:
+                this.setState({ Stock: 2 })
+                break;
+            default:
+                break;
         }
     }
 
     setStock_ramette = async () => {
-        await this.setState({ Stock: { ramette: !this.state.Stock.ramette, carton: false } })
-        await this.checkValider()
+        // await this.setState({ Stock: { ramette: !this.state.Stock.ramette, carton: false } })
+        // await this.checkValider()
     }
     setStock_carton = async () => {
-        await this.setState({ Stock: { ramette: false, carton: !this.state.Stock.carton, } })
-        await this.checkValider()
+        // await this.setState({ Stock: { ramette: false, carton: !this.state.Stock.carton, } })
+        // await this.checkValider()
     }
 
     setPapier_A4 = async () => {
-        await this.setState({ Papier: { A4: !this.state.Papier.A4, A3: false } })
-        await this.checkValider()
+        // await this.setState({ Papier: { A4: !this.state.Papier.A4, A3: false } })
+        // await this.checkValider()
     }
 
     setPapier_A3 = async () => {
-        await this.setState({ Papier: { A3: !this.state.Papier.A3, A4: false } })
-        await this.checkValider()
+        // await this.setState({ Papier: { A3: !this.state.Papier.A3, A4: false } })
+        // await this.checkValider()
     }
 
     setOffre_basic = async () => {
-        await this.setState({ Offre: { basic: !this.state.Offre.basic, premium: false } })
-        await this.checkValider()
+        // await this.setState({ Offre: { basic: !this.state.Offre.basic, premium: false } })
+        // await this.checkValider()
     }
 
     setOffre_premium = async () => {
-        await this.setState({ Offre: { premium: !this.state.Offre.premium, basic: false } })
-        await this.checkValider()
+        // await this.setState({ Offre: { premium: !this.state.Offre.premium, basic: false } })
+        // await this.checkValider()
     }
 
     checkValider = () => {
         if (this.state.Stock.ramette == false & this.state.Stock.carton == false ||
             this.state.Papier.A4 == false & this.state.Papier.A3 == false ||
             this.state.Offre.basic == false & this.state.Offre.premium == false ||
-            this.state.Ref_article == null) {
+            this.state.Article == null) {
 
             this.setState({ Valider_success: false })
 
@@ -61,6 +107,7 @@ export default class SetInformations extends React.Component {
     }
 
     render() {
+
         return (
             <ScrollView >
                 <View style={[styles.header, { height: height / 4 }]}>
@@ -74,18 +121,19 @@ export default class SetInformations extends React.Component {
                         <View style={{ flexDirection: 'row', paddingTop: 5 }}>
                             {/* Ramette button */}
                             <TouchableOpacity
-                                style={[styles.btnSetInfo, { backgroundColor: this.state.Stock.ramette ? '#2d2e87' : '#f9f9f9' }]}
-                                onPress={this.setStock_ramette}>
-                                <Text style={[styles.titleBtnSetInfo, { color: this.state.Stock.ramette ? '#fff' : '#999999' }]}>Ramette</Text>
+                                style={[styles.btnSetInfo, { backgroundColor: this.state.Stock ? '#2d2e87' : '#f9f9f9' }]}
+                                onPress={this.changeValue(1)}
+                            >
+                                <Text style={[styles.titleBtnSetInfo, { color: this.state.Stock ? '#fff' : '#999999' }]}>Ramette</Text>
                             </TouchableOpacity>
                             <View style={{ width: '10%', justifyContent: "center", alignItems: 'center' }}>
                                 <Text style={{ fontSize: 30, color: '#6600ff' }}>\</Text>
                             </View>
                             {/* Carton button */}
                             <TouchableOpacity
-                                style={[styles.btnSetInfo, { backgroundColor: this.state.Stock.carton ? '#2d2e87' : '#f9f9f9' }]}
+                                style={[styles.btnSetInfo, { backgroundColor: this.state.Stock ? '#2d2e87' : '#f9f9f9' }]}
                                 onPress={this.setStock_carton}>
-                                <Text style={[styles.titleBtnSetInfo, { color: this.state.Stock.carton ? '#fff' : '#999999' }]}>Carton</Text>
+                                <Text style={[styles.titleBtnSetInfo, { color: this.state.Stock ? '#fff' : '#999999' }]}>Carton</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -137,15 +185,16 @@ export default class SetInformations extends React.Component {
                         <View style={[styles.header, styles.btnSetInfo, { marginTop: 5, borderRadius: 15, padding: 15 }]}>
                             {/* Picker value */}
                             <Picker
-                                selectedValue={this.state.Ref_article}
+                                selectedValue={this.state.Article}
                                 style={styles.listChoisir}
-                                onValueChange={async (itemValue) => {
-                                    await this.setState({ Ref_article: itemValue })
-                                    await this.checkValider()
+                                onValueChange={(itemValue) => {
+                                    this.setState({ Article: itemValue })
+                                }}>
+                                <Picker.Item label="Choisir . . ." value={null} color='#2d2e87' />
+                                {
+                                    this.state.Ref_article.map(item =>
+                                        <Picker.Item key={item.id} label={item.name} value={item.company_id} color='#2d2e87' />)
                                 }
-                                }>
-                                <Picker.Item label="Choisir . . ." value={null} color='#2d2e87'  />
-                                <Picker.Item label="Ref: XXXXXXX" value="abc" color='#2d2e87'  />
                             </Picker>
                         </View>
                     </View>
@@ -175,6 +224,18 @@ export default class SetInformations extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.modalVisible}>
+                    <View style={{ backgroundColor: '#33333333', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <CirclesLoader
+                            size={50}
+                            color="green"
+                            dotRadius={8}>
+                        </CirclesLoader>
+                    </View>
+                </Modal>
             </ScrollView>
         )
     }

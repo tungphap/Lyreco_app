@@ -2,9 +2,10 @@ import React from 'react'
 import {
     View, Text,
     TouchableOpacity, Dimensions,
-    ScrollView, TextInput, Image,
-    CheckBox, Alert, ActivityIndicator, AsyncStorage
+    ScrollView, TextInput, Image, Alert, ActivityIndicator,
 } from 'react-native'
+import CheckBox from '@react-native-community/checkbox'
+import AsyncStorage from '@react-native-community/async-storage'
 import Logo from '../images/LYRECO.png'
 import styles from '../style'
 import global from '../global'
@@ -16,8 +17,21 @@ export default class LoginScreen extends React.Component {
         this.state = {
             email: '',
             password: '',
-            auto: false,
+            autoConnect: false,
             animating: false
+        }
+    }
+
+    async componentDidMount() {
+        const bool = JSON.parse(await AsyncStorage.getItem("@autoConnect:"))
+        this.setState({ autoConnect: bool })
+        if (this.state.autoConnect == true) {
+            const account = JSON.parse(await AsyncStorage.getItem("@SaveAccount"))
+            if (account !== null) {
+                this.setState({ email: account.email })
+                this.setState({ password: account.password })
+                this.login()
+            }
         }
     }
 
@@ -28,10 +42,12 @@ export default class LoginScreen extends React.Component {
         } else {
             this.setState({ animating: true })
             const params = { email: email, password: password }
-            loginApi(`${global.url}${'v1/auth/login/app'}`, params).then(
+            loginApi(`${global.url_login}`, params).then(
                 data => {
                     if (data !== null && data !== undefined) {
                         this.setState({ animating: false })
+                        const account = { email, password }
+                        AsyncStorage.setItem("@SaveAccount", JSON.stringify(account))
                         this.props.navigation.navigate('HomePage')
                     } else {
                         this.setState({ animating: false })
@@ -42,8 +58,11 @@ export default class LoginScreen extends React.Component {
         }
     }
 
-    autoConnect = () => {
-        this.setState({ auto: !this.state.auto })
+    autoConnect = async () => {
+        await this.setState({ autoConnect: !this.state.autoConnect })
+        await AsyncStorage.setItem("@autoConnect:", JSON.stringify(this.state.autoConnect))
+        const account = { email: this.state.email, password: this.state.password }
+        AsyncStorage.setItem("@SaveAccount", JSON.stringify(account))
     }
 
     render() {
@@ -60,6 +79,8 @@ export default class LoginScreen extends React.Component {
                         <Text style={styles.titleInput}>Identifiant:</Text>
                         <TextInput
                             style={styles.textInput}
+                            value={this.state.email}
+                            autoCapitalize='none'
                             onChangeText={(email) => this.setState({ email: email })}>
                         </TextInput>
                     </View>
@@ -69,13 +90,14 @@ export default class LoginScreen extends React.Component {
                         <TextInput
                             style={styles.textInput}
                             secureTextEntry={true}
+                            value={this.state.password}
                             onChangeText={(password) => this.setState({ password: password })}>
                         </TextInput>
                     </View>
                     <View style={[styles.inputGroup, { flexDirection: 'row', alignItems: 'center' }]}>
                         <CheckBox
                             onValueChange={this.autoConnect}
-                            value={this.state.auto}></CheckBox>
+                            value={this.state.autoConnect}></CheckBox>
                         <Text style={{ color: '#2d2e87', fontFamily: 'GothamMedium' }}>Connexion automatique</Text>
                     </View>
                 </View>
