@@ -49,8 +49,8 @@ export default class SetInformations extends React.Component {
         })
     }
 
-    changeValue = (id) => () => {
-        switch (id) {
+    changeValue = (name) => () => {
+        switch (name) {
             case 1:
                 this.setState({ Stock: 1 })
                 alert(this.state.Stock)
