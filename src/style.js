@@ -46,7 +46,7 @@ module.exports = {
         marginBottom: 30,
         borderRadius: 7,
         paddingLeft: 15,
-        fontFamily: 'GothamMedium'
+        fontFamily: 'GothamLight'
     },
     titleInput: {
         fontWeight: 'bold',

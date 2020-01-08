@@ -13,7 +13,9 @@ export default class ValiderFail extends React.Component {
                     <View style={{ height: '10%' }}></View>
                     <Text style={[styles.textRed]}>ATTENTION !</Text>
                     <Text></Text>
-                    <Text style={[styles.textRed, { fontFamily: 'GothamLight', fontSize: 20 }]}>Votre capteur n'a été reconnu par le réseau.{`\n`} Vous devez trouver un emplacement compatible</Text>
+                    <Text style={[styles.textRed, { fontFamily: 'GothamLight', fontSize: 20 }]}>
+                        Votre capteur n'a été reconnu par le réseau.{`\n`} 
+                        Vous devez trouver un emplacement compatible</Text>
 
                 </View>
 

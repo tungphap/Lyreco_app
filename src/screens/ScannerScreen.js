@@ -1,14 +1,20 @@
 import React from 'react'
-import { View, Text, Dimensions, TouchableOpacity, Alert, Animated, Easing, ScrollView } from 'react-native'
+import {
+    View, Text,
+    Dimensions,
+    TouchableOpacity,
+    Alert, Animated,
+    Easing, ScrollView, ToastAndroid
+} from 'react-native'
 import { RNCamera } from 'react-native-camera'
 import styles from '../style'
-
+import { TextLoader } from 'react-native-indicator'
 const { width, height } = Dimensions.get('window')
 export default class ScannerScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            animated: new Animated.Value(0)
+            animated: new Animated.Value(0),
         }
     }
 
@@ -32,19 +38,22 @@ export default class ScannerScreen extends React.Component {
     }
 
     onScan = (e) => {
-        if (e) {
-            this.props.navigation.navigate('Valider', { value: e.data })
+        if (e.data.includes('dev_eui')) {
+            const scaned = JSON.parse(e.data)
+            this.props.navigation.navigate('Valider', { valueData: scaned })
             this.camera.pausePreview()
+        }else {
+            ToastAndroid.show("Code QR non valide", ToastAndroid.SHORT)
         }
     }
-    paus
+
     render() {
         return (
             <View style={[styles.container, { height: height, flex: 0 }]}>
                 <ScrollView>
                     <View style={[styles.header, { height: height / 4, flex: 0 }]}>
                         <Text style={[styles.textTitle, { letterSpacing: 0, textAlign: 'center' }]}>Merci de bien vouloir{`\n`}scanner le QRcode</Text>
-                        <Text style={{ color: '#2d2e87', fontSize: 16, fontFamily: 'GothamLight' }}>Qui se trouve au dos de votre captuer</Text>
+                        <Text style={{ color: '#2d2e87', fontSize: 16, fontFamily: 'GothamLight' }}>Qui se trouve au dos de votre capteur</Text>
                     </View>
                     <View style={[styles.body, { height: height / 2, flex: 0 }]}>
                         <RNCamera
@@ -82,13 +91,13 @@ export default class ScannerScreen extends React.Component {
                         </RNCamera>
                     </View>
                     <View style={[styles.footer, { height: height / 4, flex: 0 }]}>
-                        <TouchableOpacity style={styles.btnTouchable}
+                        <View style={styles.btnTouchable}
                             onPress={() => {
                                 this.props.navigation.navigate('Valider', { value: 1 })
 
                             }}>
-                            <Text style={[styles.titleBtn]}>SCANNING...</Text>
-                        </TouchableOpacity>
+                            <TextLoader text="SCANNING" textStyle={styles.titleBtn} />
+                        </View>
                     </View>
                 </ScrollView>
             </View>

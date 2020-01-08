@@ -15,7 +15,7 @@ export default class WelcomeScreen extends React.Component {
                 <View style={[styles.body]}>
                     <View style={[styles.header, { flex: 2, justifyContent: 'flex-end' }]}>
                         <Text style={[styles.textTitle]}>Bienvenue dans</Text>
-                        <Text style={{ color: '#2d2e87', fontFamily: 'GothamBook' }}>I'application d'installation des captuers</Text>
+                        <Text style={{ color: '#2d2e87', fontFamily: 'GothamBook' }}>I'application d'installation des capteurs</Text>
                     </View>
                     <View style={[styles.body]}>
                         <Image source={E_approIC} style={{ width: width / 3, height: '70%' }} />

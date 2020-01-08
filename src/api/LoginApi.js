@@ -1,6 +1,6 @@
-import { AsyncStorage, Alert, ToastAndroid } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
-const LoginApi = async (url, param) => {
+const loginApi = async(url, param) => {
     try {
         const body = new FormData();
         body.append('email', param.email.toString());
@@ -10,12 +10,14 @@ const LoginApi = async (url, param) => {
             method: 'POST',
             body: body
         });
-        if (response.status == 200) {
-            let responseJson = await response.json();
+        let responseJson = await response.json();
+        if(responseJson.status === 200) {
+            AsyncStorage.setItem('@AuthKey:key', JSON.stringify(responseJson.msg.token));
+            AsyncStorage.setItem('@MyAccount:key', JSON.stringify(Object.assign(responseJson, {'password': param.password.toString()})));
             return responseJson;
-        } else {
+        }else {
             return null;
         }
-    } catch (error) { }
+    } catch (error) {}
 }
-export default LoginApi;
+export default loginApi;
